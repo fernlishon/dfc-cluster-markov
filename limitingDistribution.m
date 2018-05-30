@@ -32,21 +32,21 @@ for j=1:6
 end
 constantM=[constantM;1];
 avg_add1=[avg_tranposition; avg_add];
-pi = pinv(avg_add1)*constantM;
-% avg_add_constantM=[avg_add1 constantM];%得到增广矩阵
-% det_avg=det(avg_add_constantM);
-% if det_avg ~= 0
-%     disp('this matix has solution');
-% else
-%     disp('no solution');
-% end
-% 
-% ravg=rref(avg_add_constantM);
-% Aavg=ravg(1:6,1:6);
-% bavg=ravg(1:6,7);
-% pi=Aavg\bavg;
-% pi_transposition=(pi)';
-% ccc=pi_transposition * avg;%验证是否正确
+%pi = pinv(avg_add1)*constantM;%超定方程下使用pinv
+avg_add_constantM=[avg_add1 constantM];%得到增广矩阵
+det_avg=det(avg_add_constantM);
+if det_avg ~= 0
+    disp('this matix has solution');
+else
+    disp('no solution');
+end
+
+ravg=rref(avg_add_constantM);
+Aavg=ravg(1:6,1:6);
+bavg=ravg(1:6,7);
+pi=Aavg\bavg;
+pi_transposition=(pi)';
+ccc=pi_transposition * avg;%验证是否正确
 disp('the limting distribution has an unique solution.');
 x=[1,2,3,4,5,6];
 pi_100=pi*100;%最终画出百分比图
